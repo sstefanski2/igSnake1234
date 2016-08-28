@@ -61,6 +61,20 @@
   extern "C" void __cdecl WinMainCRTStartup(HINSTANCE, HINSTANCE, LPSTR, int)
   ```
 
+  and (add to linker options /ENTRY:winmain)
+
+  ```c
+  __declspec(naked) void winmain()
+  {
+      // Prolog
+      __asm enter 0x10, 0;
+      __asm pushad;
+      {
+          // ...
+      }
+  }
+  ```
+
 * Fullscreen window is made out of textbox control.
 
 * Using:
