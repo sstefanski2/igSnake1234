@@ -14,7 +14,7 @@
 
 ## Building
 
-* Install [VS C++ 2015]([Visual Studio 2015 Community](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx)
+* Install [VS C++ 2015](https://www.visualstudio.com/en-us/products/visual-studio-community-vs.aspx)
   (Remember to set proper location in `build.bat` if necessary).
 * Download [Crinkler](http://crinkler.net/) and copy to this folder.
 * Execute `build.cmd`.
