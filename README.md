@@ -37,7 +37,7 @@
 * Using below **rand** implementation makes code more readable and doesn't
   affect exe size:
 
-  ```
+  ```c
   unsigned int rand()
   {
       return GetTickCount();
@@ -51,13 +51,13 @@
 
 * There's no difference in exe size between:
 
-  ```
+  ```c
   void WINAPI WinMainCRTStartup()
   ```
 
   and
 
-  ```
+  ```c
   extern "C" void __cdecl WinMainCRTStartup(HINSTANCE, HINSTANCE, LPSTR, int)
   ```
 
@@ -65,13 +65,13 @@
 
 * Using:
 
-  ```
+  ```c
   #define GAME_OVER_TEXT "Game over"
   ```
 
   takes less memory than:
 
-  ```
+  ```c
   TCHAR game_over_text[] = "Game over";
   ```
 
@@ -82,7 +82,8 @@
 * When tried linker from Microsoft, 64-bit exe was bigger than 32-bit one.
 
 * Smallest minimal executable code (with only MessageBox) that I could get
-  with VS C++ is 2560 bytes. It couldn't be compressed by UPX then.
+  with VS C++ is 2560 bytes. It couldn't be compressed by
+  [UPX](http://upx.sourceforge.net/) then.
   Anyway UPX worked with bigger code.
 
 * GCC/G++ are not suitable for small exe size.
@@ -106,8 +107,8 @@
 * Game uses sound from location `C:\Windows\Media\chord.wav`.
   If it can't find this file, it beeps. :)
 
-* <keyb>Print screen</keyb> key doesn't work with this app, but it's possible
-  to make a screenshot with <keyb>F12</keyb> when `_DEBUG` is defined.
+* <kbd>Print screen</kbd> key doesn't work with this app, but it's possible
+  to make a screenshot with <kbd>F12</kbd> when `_DEBUG` is defined.
   Also check **CaptureAnImage**, I've removed its code but there is info
   where it can be found on MSDN site.
 
@@ -116,7 +117,7 @@
   This way I found serious bug with memory.
   Missing **DeleteObject** was the problem.
 
-## Screenshots
+## Screenshot
 
 ![igSnake1234](markdown/screenshot.png)
 
