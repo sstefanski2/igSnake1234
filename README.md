@@ -4,8 +4,10 @@
 
 * This is a simple snake game created for
   [1234 bytes game](http://gynvael.coldwind.pl/?id=624) competition.
+  I've submitted this [commit](https://github.com/sstefanski2/igSnake1234/blob/1ce35cad62c9ccc82e44bbbabddfcdb1b7008f9f/igSnake1234.exe).
 * Runs in fullscreen 800x600.
 * Tested only under Win10 64-bit.
+* As a bonus I've added similar version in OpenGL which is over 1234 bytes.
 
 ## Helpful resources during development time
 
