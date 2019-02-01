@@ -25,7 +25,10 @@ DEVMODE g_ScreenSettings =
 };
 
 // Snake vars
-struct S_SNAKE { int x, y; } snake_blocks[SNAKE_MAX_LENGTH];
+struct S_SNAKE
+{
+    int x, y;
+} snake_blocks[SNAKE_MAX_LENGTH];
 unsigned int snake_length = 3;
 unsigned int apple_x;
 unsigned int apple_y;
@@ -70,7 +73,7 @@ generate:
     apple_y = (rand() % 29 + 1) * SNAKE_HEIGHT;
     for (unsigned int i = 0; i < snake_length; i++)
         if ((snake_blocks[i].x == apple_x) &&
-            (snake_blocks[i].y == apple_y))
+                (snake_blocks[i].y == apple_y))
             goto generate;
 }
 
@@ -117,7 +120,7 @@ void game_loop()
 
     // Check if snake ate an apple
     if ((snake_blocks[0].x == apple_x) &&
-        (snake_blocks[0].y == apple_y))
+            (snake_blocks[0].y == apple_y))
     {
         PlaySound(TEXT("C:\\Windows\\Media\\chord.wav"), NULL,
                   SND_ASYNC|SND_FILENAME);
@@ -126,11 +129,14 @@ void game_loop()
             fade_state = EIN;
             switch (GetTickCount() % 3)
             {
-            case 0: bg_attr = &bg_r;
+            case 0:
+                bg_attr = &bg_r;
                 break;
-            case 1: bg_attr = &bg_g;
+            case 1:
+                bg_attr = &bg_g;
                 break;
-            case 2: bg_attr = &bg_b;
+            case 2:
+                bg_attr = &bg_b;
                 break;
             }
         }
@@ -159,7 +165,7 @@ void game_loop()
     // Check if snake has bitten himself
     for (unsigned int i = snake_length-1; i > 1; i--)
         if ((snake_blocks[0].x == snake_blocks[i].x) &&
-            (snake_blocks[0].y == snake_blocks[i].y))
+                (snake_blocks[0].y == snake_blocks[i].y))
             game_over = TRUE;
 }
 

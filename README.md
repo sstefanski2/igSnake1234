@@ -57,12 +57,6 @@
   void WINAPI WinMainCRTStartup()
   ```
 
-  and
-
-  ```c
-  extern "C" void __cdecl WinMainCRTStartup(HINSTANCE, HINSTANCE, LPSTR, int)
-  ```
-
   and (add to linker options /ENTRY:winmain)
 
   ```c
@@ -79,28 +73,15 @@
 
 * Fullscreen window is made out of textbox control.
 
-* Using:
-
-  ```c
-  #define GAME_OVER_TEXT "Game over"
-  ```
-
-  takes less memory than:
-
-  ```c
-  TCHAR game_over_text[] = "Game over";
-  ```
-
 ### Linker/compiler
 
-* Crinkler can't doesn't work with 64-bit .obj files.
+* Crinkler doesn't work with 64-bit .obj files.
 
 * When tried linker from Microsoft, 64-bit exe was bigger than 32-bit one.
 
 * Smallest minimal executable code (with only MessageBox) that I could get
   with VS C++ is 2560 bytes. It couldn't be compressed by
   [UPX](http://upx.sourceforge.net/) then.
-  Anyway UPX worked with bigger code.
 
 * GCC/G++ are not suitable for small exe size.
   They are not compatible with Crinkler.
@@ -118,10 +99,10 @@
 
 * Sometimes it's better to write decrementing **for** loop than inc.
 
-* Moving around variables placement in code can reduce some exe size.
+* Moving around placement of variables in code can reduce some exe size.
 
 * Game uses sound from location `C:\Windows\Media\chord.wav`.
-  If it can't find this file, it beeps. :)
+  If it can't find this file, it beeps.
 
 * <kbd>Print screen</kbd> key doesn't work with this app, but it's possible
   to make a screenshot with <kbd>F12</kbd> when `_DEBUG` is defined.
@@ -130,25 +111,8 @@
 
 * For proper debugging I recommend creating new solution in VS and including
   there `igSnake1234.c`.
-  This way I found serious bug with memory.
-  Missing **DeleteObject** was the problem.
 
 ## Screenshot
 
-![igSnake1234](markdown/screenshot.png)
+![igSnake1234](igsnake1234.png)
 
-## Donate
-
-Because I cannot afford going on holidays ;(
-
-* ![Paypal](markdown/paypal.png) Paypal: [Donate](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=8BFFJT96MYZZY&lc=PL&item_name=Szymon%20Stefanski&currency_code=PLN&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted)
-* ![Bitcoin](markdown/bitcoin.png) Bitcoin: 1JCckCA2KFhbPxgCRCbWKnd9GisPy64obT [account status](https://blockchain.info/address/1JCckCA2KFhbPxgCRCbWKnd9GisPy64obT)
-
-## License
-
-```
-Copyright © 2016 Szymon Stefański <stefanski.sz@gmail.com>
-This work is free. You can redistribute it and/or modify it under the
-terms of the Do What The Fuck You Want To Public License, Version 2,
-as published by Sam Hocevar. See the LICENSE file for more details.
-```

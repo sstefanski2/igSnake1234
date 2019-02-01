@@ -1,5 +1,5 @@
 /*
-Small quirks:
+Notes:
     * On first frame color of snake's head is not defined, so it's black.
     * On the beginning bg color is 0.0f, 0.0f, 0.0f, after first apple
       'r', 'g' or 'b' is changed to 0.1f.
@@ -23,8 +23,8 @@ Small quirks:
 PIXELFORMATDESCRIPTOR pfd =
 {
     0,
-    1, PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER, 32, 0, 0, 0, 0, 0, 0, 
-    0, 0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0 
+    1, PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER, 32, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0
 };
 // 156 bytes
 DEVMODE g_ScreenSettings =
@@ -34,7 +34,10 @@ DEVMODE g_ScreenSettings =
     { 0 }, 0, 32, SCREEN_WIDTH, SCREEN_HEIGHT, { 0 }, 0, 0, 0, 0, 0, 0, 0, 0, 0
 };
 // 8 bytes each
-struct S_SNAKE { GLfloat x, y, r, g, b; } snake_blocks[SNAKE_MAX_LENGTH];
+struct S_SNAKE
+{
+    GLfloat x, y, r, g, b;
+} snake_blocks[SNAKE_MAX_LENGTH];
 // 4 bytes each
 HWND hwnd;
 HDC hDC;
@@ -68,7 +71,7 @@ generate:
     apple_y = (rand() % 53 + 1) * SNAKE_HEIGHT;
     for (unsigned int i = 0; i < snake_length; i++)
         if ((snake_blocks[i].x == apple_x) &&
-            (snake_blocks[i].y == apple_y))
+                (snake_blocks[i].y == apple_y))
             goto generate;
 }
 
@@ -109,7 +112,7 @@ void game_loop()
 
     // Check if snake ate an apple
     if ((snake_blocks[0].x == apple_x) &&
-        (snake_blocks[0].y == apple_y))
+            (snake_blocks[0].y == apple_y))
     {
         PlaySound(TEXT("C:\\Windows\\Media\\chord.wav"), NULL,
                   SND_ASYNC|SND_FILENAME);
@@ -118,11 +121,14 @@ void game_loop()
             fade_state = EIN;
             switch (GetTickCount() % 3)
             {
-            case 0: bg_attr = &bg_r;
+            case 0:
+                bg_attr = &bg_r;
                 break;
-            case 1: bg_attr = &bg_g;
+            case 1:
+                bg_attr = &bg_g;
                 break;
-            case 2: bg_attr = &bg_b;
+            case 2:
+                bg_attr = &bg_b;
                 break;
             }
         }
@@ -151,19 +157,19 @@ void game_loop()
     // Check if snake has bitten himself
     for (unsigned int i = snake_length-1; i > 1; i--)
         if ((snake_blocks[0].x == snake_blocks[i].x) &&
-            (snake_blocks[0].y == snake_blocks[i].y))
+                (snake_blocks[0].y == snake_blocks[i].y))
             game_over = TRUE;
 }
 
 void WINAPI WinMainCRTStartup()
 {
-    ChangeDisplaySettings(&g_ScreenSettings, CDS_FULLSCREEN); 
+    ChangeDisplaySettings(&g_ScreenSettings, CDS_FULLSCREEN);
     hwnd = CreateWindow("static", 0, WS_POPUP | WS_VISIBLE | WS_MAXIMIZE,
                         0, 0, 0, 0, 0, 0, 0, 0);
     hDC = GetDC(hwnd);
-    SetPixelFormat(hDC, ChoosePixelFormat (hDC, &pfd) , &pfd);
+    SetPixelFormat(hDC, ChoosePixelFormat (hDC, &pfd), &pfd);
     wglMakeCurrent(hDC, wglCreateContext(hDC));
-    ShowCursor(FALSE); 
+    ShowCursor(FALSE);
 
     // Init values
     snake_blocks[0].x = SCREEN_WIDTH / 2;
